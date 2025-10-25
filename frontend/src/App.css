@@ -1,0 +1,44 @@
+@import "tailwindcss"; 
+
+
+/* src/pages/SplashScreen.css */
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #340062; /* your exact splash background */
+}
+
+.splash-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #340062;
+  animation: fadeOut 3s ease-in-out forwards;
+}
+
+.logo-box {
+  background-color:#340062;
+  padding: 2rem 4rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.logo {
+  height: 60px;
+}
+
+/* @keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0%, 85% { opacity: 1; }
+  100% { opacity: 0; }
+} */
