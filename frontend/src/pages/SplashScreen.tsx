@@ -1,9 +1,28 @@
 import React, { useEffect } from "react";
 import logo from "../assets/logo.png";
 
-const SplashScreen = ({ onFinish, isTransitioning }) => {
+type SplashScreenProps = {
+  onFinish: () => void;
+  isTransitioning: boolean;
+};
+
+const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish, isTransitioning }) => {
+  // Add the keyframes for bounce animation safely
   useEffect(() => {
-    const timer = setTimeout(onFinish, 2000); // Splash lasts 2 seconds
+    const styleSheet = document.styleSheets[0];
+    try {
+      styleSheet.insertRule(
+        `@keyframes bounce {
+          0%, 80%, 100% { transform: scale(0); }
+          40% { transform: scale(1); }
+        }`,
+        styleSheet.cssRules.length
+      );
+    } catch (e) {
+      // Ignore if already inserted or in an unsupported stylesheet
+    }
+    
+    const timer = setTimeout(onFinish, 2000);
     return () => clearTimeout(timer);
   }, [onFinish]);
 
@@ -22,11 +41,11 @@ const SplashScreen = ({ onFinish, isTransitioning }) => {
         justifyContent: "center",
         zIndex: 9998,
         opacity: isTransitioning ? 0 : 1,
-        transition: "opacity 0.8s ease-in-out 0.5s", // Delay fade to let logo move first
+        transition: "opacity 0.8s ease-in-out 0.5s",
         pointerEvents: isTransitioning ? "none" : "auto",
       }}
     >
-      {/* Loading dots */}
+      {/* You can put your logo here if needed */}
       <div
         style={{
           marginTop: "12rem",
@@ -44,8 +63,7 @@ const SplashScreen = ({ onFinish, isTransitioning }) => {
   );
 };
 
-// Styles for the loading dots
-const dotStyle = {
+const dotStyle: React.CSSProperties = {
   width: "0.8rem",
   height: "0.8rem",
   borderRadius: "50%",
@@ -53,17 +71,5 @@ const dotStyle = {
   display: "inline-block",
   animation: "bounce 1s infinite",
 };
-
-// Add keyframes for the bounce animation
-const styleSheet = document.styleSheets[0];
-styleSheet.insertRule(
-  `
-@keyframes bounce {
-  0%, 80%, 100% { transform: scale(0); }
-  40% { transform: scale(1); }
-}
-`,
-  styleSheet.cssRules.length
-);
 
 export default SplashScreen;
