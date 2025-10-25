@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import logo from "../assets/logo.png";
+import * as React from "react";
+import { useEffect } from "react";
+//import logo from "../assets/logo.png";
 
 type SplashScreenProps = {
   onFinish: () => void;

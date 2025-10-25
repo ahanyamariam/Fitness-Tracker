@@ -1,11 +1,23 @@
+import * as React from "react";
 import { useEffect, useState } from "react";
 import SplashScreen from "./pages/SplashScreen";
 import AuthPage from "./pages/AuthPage";
 import logo from "./assets/logo2.png";
+import './lib/firebase';
 
-export default function App() {
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [showAuthPage, setShowAuthPage] = useState(false);
+/* Optional: define props if SplashScreen or AuthPage use them
+interface SplashScreenProps {
+  onFinish: () => void;
+  isTransitioning: boolean;
+}
+
+interface AuthPageProps {
+  isVisible: boolean;
+}
+*/
+export default function App(): React.JSX.Element {
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+  const [showAuthPage, setShowAuthPage] = useState<boolean>(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
