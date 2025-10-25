@@ -24,10 +24,10 @@ export default function App() {
         alt="App Logo"
         style={{
           position: "fixed",
-          width: "10rem",
-          height: "10rem",
+          width: "14rem",
+          height: "14rem",
           zIndex: 9999,
-          top: isTransitioning ? "50%" : "50%",
+          top: isTransitioning ? "30%" : "50%",
           left: isTransitioning ? "calc(50% + 17.5vw)" : "50%",
           transform: isTransitioning
             ? "translate(-50%, -50%) scale(0.6)"
